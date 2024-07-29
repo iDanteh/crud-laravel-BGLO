@@ -23,4 +23,4 @@ Route::get('/games/{name_game}/{categoria?}', [GamesController::class, 'help']);
 Route::post('/games/storeVideogame', [GamesController::class, 'storeVideogame'])->name('createVideogame');
 Route::get('/view/{game_id}', [GamesController::class, 'view'])->name('viewGame');
 Route::post('/games/updateVideogame', [GamesController::class, 'updateVideogame'])->name('updateVideogame');
-Route::get('/delete/{game_id}', [GamesController::class, 'delete'])->name('deleteGame');
+Route::delete('/delete/{game_id}', [GamesController::class, 'delete'])->name('deleteGame');

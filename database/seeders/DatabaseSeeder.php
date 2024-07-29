@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\videogame;
 use Illuminate\Database\Seeder;
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -15,7 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            CategoriesTableSeeders::class
+            CategoriesTableSeeder::class
         ]);
         videogame::factory(100)->create();
         // \App\Models\User::factory(10)->create();

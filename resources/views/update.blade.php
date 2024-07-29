@@ -8,7 +8,7 @@
 <body>
     <h1>Actualización de objetos</h1>
     <p><a href="{{route('games')}}">Lista de juegos</a></p>
-    <form action="{{route('updateVideogame')}}" method="POST">
+    <form action="{{route('updateVideogame')}}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas actualizar este registro?');">
 
         @csrf
         <input type="hidden" name="game_id" value="{{$game->id}}">

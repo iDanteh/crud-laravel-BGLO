@@ -8,11 +8,14 @@
 <body>
     <h1>Creación de objetos</h1>
     <p><a href="{{route('games')}}">Lista de juegos</a></p>
-    <form action="{{route('createVideogame')}}" method="POST">
+    <form action="{{route('createVideogame')}}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas añadir este registro?');">
 
         @csrf
 
         <input type="text" placeholder="Nombre de videojuego" name="name_game"></input>
+        @error('name_game')
+        {{$message}}
+        @enderror
         <select name="categoria_id" id="">
             @foreach ($categorias as $categoria)
             <option value="{{$categoria->id}}">{{$categoria->name}}</option>

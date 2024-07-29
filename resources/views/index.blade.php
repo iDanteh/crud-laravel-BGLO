@@ -7,14 +7,14 @@
 </head>
 <body>
     <h1>Vista creada en Blade y llamada desde el controlador</h1>
-    <p><a href="{{route('gamesCreate')}}">Nuevo Videojuego</a></p>
+    <p><a href="{{ route('gamesCreate') }}">Nuevo Videojuego</a></p>
     <h2>Listado de juegos</h2>
     <table>
         <thead>
             <tr>
                 <th>ID Videojuego</th>
                 <th>Nombre del videojuego</th>
-                <th>Categoria ID: </th>
+                <th>Categoria ID:</th>
                 <th>Creación:</th>
                 <th>Estado</th>
                 <th>Acciones</th>
@@ -23,24 +23,28 @@
         <tbody>
             @forelse ($games as $game)
             <tr>
-                <th>{{$game->id}}</th>
-                <th> <a href="{{route('viewGame', $game->id)}}">{{$game->name}}</a> </th>
-                <th>{{$game->category_id}}</th>
-                <th>{{$game->created_at}}</th>
+                <th>{{ $game->id }}</th>
+                <th><a href="{{ route('viewGame', $game->id) }}">{{ $game->name }}</a></th>
+                <th>{{ $game->category_id }}</th>
+                <th>{{ $game->created_at }}</th>
                 <th>
                     @if($game->active)
                     <span style="color: green;">Activo</span>
                     @else
                     <span style="color: red;">Inactivo</span>
                     @endif
-                    </th>
+                </th>
                 <th>
-                    <a href="{{route('deleteGame',$game->id)}}">Eliminar</a>
+                    <form action="{{ route('deleteGame', $game->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este registro?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Eliminar</button>
+                    </form>
                 </th>
             </tr>
             @empty
             <tr>
-                <th>NO hay videojuegos</th>
+                <th colspan="6">NO hay videojuegos</th>
             </tr>
             @endforelse
         </tbody>

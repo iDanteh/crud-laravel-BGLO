@@ -25,6 +25,11 @@ class GamesController extends Controller
     }
 
     public function storeVideogame(Request $request ){
+        $request->validate([
+            'name_game' =>'required',
+            'categoria_id' =>'required'
+        ]);
+
         $game = new videogame;
         $game->name = $request->name_game;
         $game->category_id = $request->categoria_id;
